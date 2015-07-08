@@ -1,0 +1,38 @@
+/* demo.css */
+
+.axis {
+  stroke:               #000;
+  stroke-width:         1.5px;
+}
+
+
+#demo_1 svg, #demo_2 svg          { border:         solid 1px #ccc; }
+
+
+.node ellipse                     { stroke:         #000;   }
+.node ellipse[class^="active_"]   { stroke-width:   6px;    }
+.node ellipse.active_ib           { stroke:         blue;   }
+.node ellipse.active_im           { stroke:         green;  }
+.node ellipse.active_mo           { stroke:         red;    }
+
+
+.link {
+  fill:                           none;
+  stroke:                         #ccc;
+  stroke-opacity:                 0.3;
+  stroke-width:                   2px;
+}
+
+.link.active_ib, .link.active_im, .link.active_mo {
+  stroke-opacity:                 1;
+  stroke-width:                   3px;
+}
+
+.link.active_ib                   { stroke:       blue;   }
+.link.active_im                   { stroke:       green;  }
+.link.active_mo                   { stroke:       red;    }
+
+
+.notes .ib                        { color:        blue;   }
+.notes .im                        { color:        green;  }
+.notes .mo                        { color:        red;    }

@@ -5,11 +5,11 @@
 #' @import htmlwidgets
 #'
 #' @export
-d3hive <- function(message, width = NULL, height = NULL) {
+d3hive <- function(data = NULL, width = NULL, height = NULL) {
 
   # forward options using x
   x = list(
-    message = message
+    data = data
   )
 
   # create widget
