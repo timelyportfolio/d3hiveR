@@ -7,12 +7,7 @@ Authors@R: c(
       person(
         "Mike", "Bostock"
         , role = c("aut", "cph")
-        , comment = "d3.js library in htmlwidgets/lib, http://d3js.org"
-      ),
-      person(
-        "Rich", "Morin"
-        , role = c("aut", "cph")
-        , comment = "hive library in htmlwidgets/lib, https://gist.github.com/RichMorin/2117857"
+        , comment = "d3.js and d3hive.js library in htmlwidgets/lib, http://d3js.org"
       ),
       person(
         "Kent", "Russell"
