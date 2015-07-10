@@ -6,13 +6,82 @@ HTMLWidgets.widget({
 
   initialize: function(el, width, height) {
 
-    return {  }
+    var svg = d3.select(el).append("svg")
+      .attr("width", width)
+      .attr("height", height)
+    .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    return { width: width, height: height }
 
   },
 
   renderValue: function(el, x, instance) {
 
-    el.innerText = x.message;
+    var width = instance.width,
+        height = instance.height,
+        innerRadius = 40,
+        outerRadius = 240;
+
+    // hard way to get number of unique axes
+    var n_axes = d3.keys(
+      d3.nest().key(function(d){return d}).map(x.data.nodes.axis)
+    ).length;
+
+    // get nodes in a better form
+    var nodes = d3.nest()
+        .key(function(d){ return d.node_id })
+        .rollup(function(d){ return d[0]; })
+        .map(HTMLWidgets.dataframeToD3(x.data.nodes));
+
+    var links = HTMLWidgets.dataframeToD3(x.data.edges).map(function(edge){
+      edge.source = nodes[edge.source]
+      edge.target = nodes[edge.target]
+
+      return edge;
+    })
+
+
+    var angle = d3.scale.ordinal()
+                  .domain(d3.range(n_axes+1))
+                  .rangePoints([0, 2 * Math.PI]),
+        radius = d3.scale.linear().range([innerRadius, outerRadius]),
+        color = d3.scale.category10().domain(d3.range(20));
+
+
+    var svg = d3.select(el).select("svg").select("g");
+
+    svg.selectAll(".axis")
+        .data(d3.range(n_axes))
+      .enter().append("line")
+        .attr("class", "axis")
+        .attr("transform", function(d) { return "rotate(" + degrees(angle(d)) + ")"; })
+        .attr("x1", radius.range()[0])
+        .attr("x2", radius.range()[1]);
+
+    svg.selectAll(".link")
+        .data(links)
+      .enter().append("path")
+        .attr("class", "link")
+        .attr("d", d3.hive.link()
+          .angle(function(d) { return angle(d.axis); })
+          .radius(function(d) { return radius(d.radius); }))
+        .style("stroke", function(d) { return d.color; })
+        .style("fill","none");
+
+    svg.selectAll(".node")
+        .data(d3.entries(nodes))
+      .enter().append("circle")
+        .attr("class", "node")
+        .attr("transform", function(d) { debugger;return "rotate(" + degrees(angle(d.value.axis)) + ")"; })
+        .attr("cx", function(d) { return radius(d.value.radius); })
+        .attr("r", 5)
+        .style("fill", function(d) { return d.value.color; });
+
+    function degrees(radians) {
+      return radians / Math.PI * 180 - 90;
+    }
+
 
   },
 

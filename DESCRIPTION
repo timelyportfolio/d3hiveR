@@ -22,6 +22,8 @@ Description: Make interactive d3.js hive plots in R with the convenience and inf
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
+  dplyr,
+  HiveR,
   htmlwidgets,
   htmltools,
   markdown

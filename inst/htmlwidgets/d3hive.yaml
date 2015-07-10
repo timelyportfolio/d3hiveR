@@ -6,4 +6,4 @@ dependencies:
   - name: d3hive
     version: 0.1
     src: htmlwidgets/lib/d3hive
-    script: d3hive.min.js
+    script: d3.hive.min.js
