@@ -23,16 +23,16 @@ HEC$nodes %>%
   summarise( nrow(unique(data.frame(radius,size))) )
 #  to get the unique nodes with their radius and size
 nodes <- HEC$nodes %>%
-  group_by(axis,radius) %>%
+  group_by(axis) %>%
   # assuming same radius and size uniquely identify a node
-  do( unique( data.frame(radius = .$radius, size = .$size) ) ) %>%
+  do( unique( data.frame(radius = .$radius, size = .$size ) ) ) %>%
+  mutate( node_id = paste0(axis,"_",1:n_distinct(radius) ) ) %>%
   ungroup %>%
   #   then we can send over a list of nodes
   #    but we will also need other meta information
   #    and we will need a mapping of node id to their new id based on unique size/radius
   #    which we should be able to accomplish by inner_join
-  {suppressMessages(inner_join( .,HEC$nodes ))} %>%
-  mutate( node_id = paste0(axis,"_",radius))
+  {suppressMessages(inner_join( .,HEC$nodes ))}
 
 #  now that we have nodes uniquely identified
 #    we'll need to add the node identifier to our links/edges
