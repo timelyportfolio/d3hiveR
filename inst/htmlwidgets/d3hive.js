@@ -57,7 +57,11 @@ HTMLWidgets.widget({
         .attr("class", "axis")
         .attr("transform", function(d) { return "rotate(" + degrees(angle(d)) + ")"; })
         .attr("x1", radius.range()[0])
-        .attr("x2", radius.range()[1]);
+        .attr("x2", radius.range()[1])
+        .style("stroke","gray")
+        .style("stroke-width","1.5px")
+        .style("fill","none");
+
 
     svg.selectAll(".link")
         .data(links)
