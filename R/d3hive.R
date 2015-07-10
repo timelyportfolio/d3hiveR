@@ -34,7 +34,7 @@ d3hive <- function(data = NULL, width = NULL, height = NULL) {
     #    but we will also need other meta information
     #    and we will need a mapping of node id to their new id based on unique size/radius
     #    which we should be able to accomplish by inner_join
-    inner_join( data$nodes ) %>%
+    {suppressMessages(inner_join( .,data$nodes ))} %>%
     mutate( node_id = paste0(axis,"_",radius))
 
   #  now that we have nodes uniquely identified
