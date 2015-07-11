@@ -20,8 +20,11 @@ HTMLWidgets.widget({
 
     var width = instance.width,
         height = instance.height,
-        innerRadius = 40,
-        outerRadius = 240;
+        innerRadius = Math.sqrt(height)*2,
+        outerRadius = .9*height/2;
+
+    innerRadius = (x.options.innerRadius) ? x.options.innerRadius : innerRadius;
+    outerRadius = (x.options.outerRadius) ? x.options.outerRadius : outerRadius;
 
     // hard way to get number of unique axes
     var n_axes = d3.keys(

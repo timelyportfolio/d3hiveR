@@ -3,14 +3,23 @@
 #' Tame your network hairball with hive plots.  For more on hive plots,
 #'    see the Martin Krzywinski's \href{http://www.hiveplot.com/}{hive plot site}.
 #'
-#' @param data \code{\link[HiveR]{HivePlotData}} object.
+#' @param data \code{\link[HiveR]{HivePlotData}} object
+#' @param innerRadius \code{integer} in px for the inner radius of the hive
+#'          plot.  The default is square root(height) * 2
+#' @param outerRadius \code{integer} in px for the outer radius of the hive
+#'          plot.  The default is 90% * height/2.
 #' @param width a valid \code{CSS} size for the width of the container
 #' @param height a valid \code{CSS} size for the height of the container
 #'
 #' @import htmlwidgets
 #' @importFrom dplyr '%>%' group_by summarise do ungroup inner_join mutate slice
 #' @export
-d3hive <- function(data = NULL, width = NULL, height = NULL) {
+d3hive <- function(
+  data = NULL
+  , innerRadius = NULL
+  , outerRadius = NULL
+  , width = NULL, height = NULL
+) {
 
   stopifnot( inherits(data,"HivePlotData") )
 
@@ -62,6 +71,10 @@ d3hive <- function(data = NULL, width = NULL, height = NULL) {
   # forward options using x
   x = list(
     data = list(nodes = nodes, edges = edges)
+    ,options = list(
+      innerRadius = innerRadius
+      ,outerRadius = outerRadius
+    )
   )
 
   # create widget
