@@ -100,18 +100,30 @@ HTMLWidgets.widget({
                   return !(d.source.node_id == nodeid ||
                     d.target.node_id == nodeid);
                 })
+      var otherNodes = container.selectAll( ".node" )
+          .filter(function(d){
+            return !(d.value.node_id == nodeid);
+          })
 
       linksWithNode
           .classed("unhighlighted",true)
           .style("stroke-opacity",.5)
           .style("stroke","rgb(220,216,217)");
+
+      otherNodes
+          .classed("unhighlighted",true)
+          .style("fill-opacity",.5)
+          .style("fill","rgb(220,216,217)");
     }
 
     function nodemouseout(){
       var container = d3.select(this.parentNode);
-      container.selectAll(".unhighlighted")
+      container.selectAll(".link.unhighlighted")
         .style("stroke", function(d) { return d.color; })
         .style("stroke-opacity", 1);
+      container.selectAll(".node.unhighlighted")
+        .style("fill", function(d) { return d.value.color; })
+        .style("fill-opacity", 1);
     }
 
 
