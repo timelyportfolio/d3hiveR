@@ -5,15 +5,24 @@
 #'
 #' @param data \code{\link[HiveR]{HivePlotData}} object
 #' @param innerRadius \code{integer} in px for the inner radius of the hive
-#'          plot.  The default is square root(height) * 2
+#'          plot.  The default is square root(height) * 2.
 #' @param outerRadius \code{integer} in px for the outer radius of the hive
-#'          plot.  The default is 90% * height/2.
+#'          plot.  The default is 0.9 * height/2.
 #' @param width a valid \code{CSS} size for the width of the container
 #' @param height a valid \code{CSS} size for the height of the container
+#'
+#' @examples
+#' \dontrun{
+#' library(HiveR)
+#' library(d3hive)
+#'
+#' d3hive( ranHiveData( nx = 5, ne = 1000) )
+#' }
 #'
 #' @import htmlwidgets
 #' @importFrom dplyr '%>%' group_by summarise do ungroup inner_join mutate slice
 #' @export
+
 d3hive <- function(
   data = NULL
   , innerRadius = NULL
