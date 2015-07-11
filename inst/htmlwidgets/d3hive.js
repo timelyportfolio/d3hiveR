@@ -82,7 +82,7 @@ HTMLWidgets.widget({
         .attr("class", "node")
         .attr("transform", function(d) { debugger;return "rotate(" + degrees(angle(d.value.axis)) + ")"; })
         .attr("cx", function(d) { return radius(d.value.radius); })
-        .attr("r", 5)
+        .attr("r", function(d){ return d.value.size; })
         .style("fill", function(d) { return d.value.color; });
 
     function degrees(radians) {
