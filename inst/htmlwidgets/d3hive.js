@@ -80,13 +80,38 @@ HTMLWidgets.widget({
         .data(d3.entries(nodes))
       .enter().append("circle")
         .attr("class", "node")
-        .attr("transform", function(d) { debugger;return "rotate(" + degrees(angle(d.value.axis)) + ")"; })
+        .attr("transform", function(d) { return "rotate(" + degrees(angle(d.value.axis)) + ")"; })
         .attr("cx", function(d) { return radius(d.value.radius); })
         .attr("r", function(d){ return d.value.size; })
-        .style("fill", function(d) { return d.value.color; });
+        .style("fill", function(d) { return d.value.color; })
+        .on("mouseover", nodemouseover )
+        .on("mouseout", nodemouseout );
 
     function degrees(radians) {
       return radians / Math.PI * 180 - 90;
+    }
+
+    function nodemouseover(){
+      var node = d3.select(this),
+        nodeid = node.data()[0].value.node_id;
+      var container = d3.select(this.parentNode);
+      var linksWithNode = container.selectAll( ".link" )
+                .filter(function(d){
+                  return !(d.source.node_id == nodeid ||
+                    d.target.node_id == nodeid);
+                })
+
+      linksWithNode
+          .classed("unhighlighted",true)
+          .style("stroke-opacity",.5)
+          .style("stroke","rgb(220,216,217)");
+    }
+
+    function nodemouseout(){
+      var container = d3.select(this.parentNode);
+      container.selectAll(".unhighlighted")
+        .style("stroke", function(d) { return d.color; })
+        .style("stroke-opacity", 1);
     }
 
 
