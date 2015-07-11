@@ -1,6 +1,11 @@
-#' <Add Title>
+#' htmlwidget for d3.js hive plots
 #'
-#' <Add Description>
+#' Tame your network hairball with hive plots.  For more on hive plots,
+#'    see the Martin Krzywinski's \href{http://www.hiveplot.com/}{hive plot site}.
+#'
+#' @param data \code{\link[HiveR]{HivePlotData}} object.
+#' @param width a valid \code{CSS} size for the width of the container
+#' @param height a valid \code{CSS} size for the height of the container
 #'
 #' @import htmlwidgets
 #' @importFrom dplyr '%>%' group_by summarise do ungroup inner_join mutate slice

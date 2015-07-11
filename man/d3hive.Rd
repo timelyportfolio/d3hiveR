@@ -2,11 +2,19 @@
 % Please edit documentation in R/d3hive.R
 \name{d3hive}
 \alias{d3hive}
-\title{<Add Title>}
+\title{htmlwidget for d3.js hive plots}
 \usage{
 d3hive(data = NULL, width = NULL, height = NULL)
 }
+\arguments{
+\item{data}{\code{\link[HiveR]{HivePlotData}} object.}
+
+\item{width}{a valid \code{CSS} size for the width of the container}
+
+\item{height}{a valid \code{CSS} size for the height of the container}
+}
 \description{
-<Add Description>
+Tame your network hairball with hive plots.  For more on hive plots,
+   see the Martin Krzywinski's \href{http://www.hiveplot.com/}{hive plot site}.
 }
 
