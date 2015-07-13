@@ -27,7 +27,7 @@ Tame your network hairball with hive plots.  For more on hive plots,
 \examples{
 \dontrun{
 library(HiveR)
-library(d3hive)
+library(d3hiveR)
 
 d3hive( ranHiveData( nx = 5, ne = 1000) )
 }

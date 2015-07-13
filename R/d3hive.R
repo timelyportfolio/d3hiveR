@@ -14,7 +14,7 @@
 #' @examples
 #' \dontrun{
 #' library(HiveR)
-#' library(d3hive)
+#' library(d3hiveR)
 #'
 #' d3hive( ranHiveData( nx = 5, ne = 1000) )
 #' }
