@@ -87,6 +87,22 @@ HTMLWidgets.widget({
         .on("mouseover", nodemouseover )
         .on("mouseout", nodemouseout );
 
+    // set up a container for tasks to perform after completion
+    //  one example would be add callbacks for event handling
+    //  styling
+    if (!(typeof x.tasks === "undefined" || x.tasks === null) ){
+      if ( (typeof x.tasks.length === "undefined") ||
+       (typeof x.tasks === "function" ) ) {
+         // handle a function not enclosed in array
+         // should be able to remove once using jsonlite
+         x.tasks = [x.tasks];
+      }
+      x.tasks.map(function(t){
+        // for each tasks run it and inside function this will equal el
+        t.call(el);
+      })
+    }
+
     function degrees(radians) {
       return radians / Math.PI * 180 - 90;
     }
