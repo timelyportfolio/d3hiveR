@@ -26,6 +26,7 @@ Imports:
   HiveR,
   htmlwidgets,
   htmltools,
+  magrittr,
   markdown
 Suggests:
   knitr

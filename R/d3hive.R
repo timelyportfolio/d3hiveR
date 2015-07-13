@@ -20,7 +20,8 @@
 #' }
 #'
 #' @import htmlwidgets
-#' @importFrom dplyr '%>%' group_by summarise do ungroup inner_join mutate slice
+#' @importFrom dplyr group_by summarise do ungroup inner_join mutate slice
+#' @importFrom magrittr '%>%'
 #' @export
 
 d3hive <- function(
